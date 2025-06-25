@@ -60,7 +60,7 @@ mvn spring-boot:run
 
 📌 Estado del proyecto
 
-✅ Funcional y estable. Ideal para aprendizaje o ampliación futura (por ejemplo, con frontend en Vue o autenticación).
+✅ En construcción. Ideal para aprendizaje o ampliación futura (por ejemplo, con frontend en Vue o autenticación).
 
 
 
