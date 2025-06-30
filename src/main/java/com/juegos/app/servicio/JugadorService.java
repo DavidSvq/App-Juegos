@@ -222,7 +222,7 @@ public class JugadorService {
 	 */
 	public Jugador modificarDatosJugador(Jugador jugador) {
 		if(jugador.getId() == null || !repositorioJugador.existsById(jugador.getId())) {
-			throw new RuntimeException("El estudiante no existe");
+			throw new RuntimeException("El jugador no existe");
 		}
 		return repositorioJugador.save(jugador);
 	}
