@@ -197,11 +197,6 @@ class JugadorServiceTest {
 	@Test
 	final void testCrearJugador_deberiaLanzarLaExcepcionPorJugadorYaExiste() throws Exception {
 		
-		/*Jugador j = new Jugador("David", "dav@hot.and");
-		
-		Field idField = Jugador.class.getDeclaredField("id");
-	    idField.setAccessible(true);
-	    idField.set(j, 1L);*/
 		Jugador j = crearJugadorConId("David", "dav@hot.and", 1L);
 
 	    when(repoJugadorMock.existsById(1L)).thenReturn(true);
@@ -211,14 +206,6 @@ class JugadorServiceTest {
 
 	@Test
 	final void testModificarDatosJugador_deberiaDevolverLaJugadoraConElNombreActualizado() throws Exception {
-		
-		/*Jugador jModificado = new Jugador(jugadores.get(1).getNombre(),jugadores.get(1).getEmail());
-		
-		Field idField = Jugador.class.getDeclaredField("id");
-		
-		idField.setAccessible(true);
-		
-		idField.set(jModificado, 2L);*/
 		
 		Jugador jModificado = crearJugadorConId(jugadores.get(1).getNombre(), jugadores.get(1).getEmail(), 2L);
 		
@@ -237,13 +224,6 @@ class JugadorServiceTest {
 	@Test
 	final void testModificarDatosJugador_deberiaDevolverLaJugadoraConElEmailActualizado() throws Exception {
 		
-		/*Jugador jModificado = new Jugador(jugadores.get(1).getNombre(),jugadores.get(1).getEmail());
-		
-		Field idField = Jugador.class.getDeclaredField("id");
-		
-		idField.setAccessible(true);
-		
-		idField.set(jModificado, 2L);*/
 		Jugador jModificado = crearJugadorConId(jugadores.get(1).getNombre(), jugadores.get(1).getEmail(), 2L);
 		
 		jModificado.setEmail("prue@ba.es");
@@ -267,11 +247,7 @@ class JugadorServiceTest {
 
 	@Test
 	void testModificarDatosJugador_deberiaLanzarExcepcionPorIdNoExistente() throws Exception {
-	    /*Jugador jugadorConId = new Jugador("Juana", "juana@email.com");
-
-	    Field idField = Jugador.class.getDeclaredField("id");
-	    idField.setAccessible(true);
-	    idField.set(jugadorConId, 42L);*/
+		
 		Jugador jugadorConId = crearJugadorConId("Juana", "juana@email.com", 42L);
 
 	    when(repoJugadorMock.existsById(42L)).thenReturn(false);
