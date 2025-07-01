@@ -194,16 +194,15 @@ class JugadorServiceTest {
 		verify(repoJugadorMock).save(j);
 	}
 	
+	
 	@Test
-	final void testCrearJugador_deberiaLanzarLaExcepcionPorJugadorYaExiste() throws Exception {
+	final void testCrearJugador_deberiaLanzarLaExcepcionPorNoNull() throws Exception {
 		
-		Jugador j = crearJugadorConId("David", "dav@hot.and", 1L);
-
-	    when(repoJugadorMock.existsById(1L)).thenReturn(true);
-
-	    assertThrows(RuntimeException.class, () -> service.crearJugador(j));
+		Jugador j = crearJugadorConId("Lola", "olaLola@ola.hola", 1L);
+		
+		assertThrows(RuntimeException.class, () -> service.crearJugador(j));
 	}
-
+	
 	@Test
 	final void testModificarDatosJugador_deberiaDevolverLaJugadoraConElNombreActualizado() throws Exception {
 		

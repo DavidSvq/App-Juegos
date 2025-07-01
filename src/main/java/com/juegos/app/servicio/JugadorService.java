@@ -13,7 +13,6 @@ package com.juegos.app.servicio;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juegos.app.modelo.Jugador;
@@ -82,7 +81,6 @@ public class JugadorService {
 	 *
 	 * @param repositorioJugador instance of the repository that will be injected automatically by Spring.
 	 */
-	@Autowired
 	public JugadorService(RepositorioJugador repositorioJugador) {
 		this.repositorioJugador = repositorioJugador;
 	}
@@ -192,7 +190,7 @@ public class JugadorService {
 	 * @throws RuntimeException if the player already exists in the database.
 	 */
 	public Jugador crearJugador(Jugador jugador) {
-		if(jugador.getId() != null && repositorioJugador.existsById(jugador.getId())) {
+		if(jugador.getId() != null) {
 			throw new RuntimeException("El jugador ya existe");
 		}
 		return repositorioJugador.save(jugador);
