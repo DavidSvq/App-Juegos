@@ -11,7 +11,6 @@
 package com.juegos.app.controlador;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,7 +82,6 @@ public class JugadorController {
 	 * 
 	 * @param jugadorService instancia del servicio <code>JugadorService</code> gestionada por Spring.
 	 */
-	@Autowired
 	public JugadorController(JugadorService jugadorService) {
 		this.jugadorService = jugadorService;
 	}
@@ -181,7 +179,7 @@ public class JugadorController {
 	public ResponseEntity<Jugador> actualizar (@PathVariable Long id, @RequestBody Jugador jugador){
 		try {
 			Jugador jugadorAux = jugadorService.obtenerPorId(id);
-			jugadorAux.setNombre(jugador.getNombre());
+		 	jugadorAux.setNombre(jugador.getNombre());
 			jugadorAux.setEmail(jugador.getEmail());
 			
 			Jugador jugadorGuardado = jugadorService.modificarDatosJugador(jugadorAux);
