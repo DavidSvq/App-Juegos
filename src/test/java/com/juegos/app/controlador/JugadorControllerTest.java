@@ -33,11 +33,11 @@ class JugadorControllerTest {
 	private JugadorController jC;
 	
 	private List<Jugador> jugadores;
-	private List<Jugador> resultado;
+	//private ResponseEntity<List<Jugador>> resultado;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		resultado = new ArrayList<>();
+		//resultado = new ArrayList<>();
 		jugadores =List.of(
 				new Jugador("David", "dav@hot.and"),
 				new Jugador("Maria", "maria@hot.es")
@@ -49,9 +49,11 @@ class JugadorControllerTest {
 		
 		when(jS.obtenerTodos()).thenReturn(jugadores);
 		
-		resultado = jC.obtenerTodos();
+		ResponseEntity<List<Jugador>> respuesta = jC.obtenerTodos();
 		
-		assertEquals(jugadores, resultado);
+		assertEquals(HttpStatus.OK, respuesta.getStatusCode());
+		
+		assertEquals(jugadores, respuesta.getBody());
 		
 		verify(jS, times(1)).obtenerTodos();
 	}
@@ -61,9 +63,9 @@ class JugadorControllerTest {
 		
 		when(jS.obtenerTodos()).thenReturn(Collections.emptyList());
 		
-		resultado = jC.obtenerTodos();
+		ResponseEntity<List<Jugador>> respuesta = jC.obtenerTodos();
 		
-		assertTrue(resultado.isEmpty());
+		assertEquals(HttpStatus.OK, respuesta.getStatusCode());
 		
 		verify(jS, times(1)).obtenerTodos();
 	}
@@ -73,7 +75,11 @@ class JugadorControllerTest {
 		
 		when (jS.obtenerTodos()).thenThrow(new RuntimeException("Error en el Servicio"));
 		
-		assertThrows(RuntimeException.class, () -> jC.obtenerTodos());
+		ResponseEntity<List<Jugador>> respuesta = jC.obtenerTodos();
+		
+		assertEquals(HttpStatus.NOT_FOUND, respuesta.getStatusCode());
+		assertNull(respuesta.getBody());
+		
 		
 		verify(jS, times(1)).obtenerTodos();
 	}
@@ -125,13 +131,15 @@ class JugadorControllerTest {
 	}
 
 	@Test
-	final void testCrear_deberiaLanzarExcepcionAlNoInsertarAlJugadorCorrectamente() {
+	final void testCrear_deberiaLanzarNotFoundAlNoInsertarAlJugadorCorrectamente() {
 		
 		Jugador ju = new Jugador("Lola", "olaLola@ola.hola");
 		
 		when(jS.crearJugador(ju)).thenThrow(new RuntimeException("Jugador no insertado"));
 		
-		assertThrows(RuntimeException.class, () -> jC.crear(ju));
+		ResponseEntity<Jugador> respuesta = jC.crear(ju);
+		assertEquals(HttpStatus.NOT_FOUND, respuesta.getStatusCode());
+		assertNull(respuesta.getBody());
 		
 		verify(jS, times(1)).crearJugador(ju);
 	}
