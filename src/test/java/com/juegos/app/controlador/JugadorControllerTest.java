@@ -7,7 +7,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,11 +32,9 @@ class JugadorControllerTest {
 	private JugadorController jC;
 	
 	private List<Jugador> jugadores;
-	//private ResponseEntity<List<Jugador>> resultado;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		//resultado = new ArrayList<>();
 		jugadores =List.of(
 				new Jugador("David", "dav@hot.and"),
 				new Jugador("Maria", "maria@hot.es")
