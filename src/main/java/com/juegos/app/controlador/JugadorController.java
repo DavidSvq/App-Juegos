@@ -99,8 +99,13 @@ public class JugadorController {
 	 * @return list of <code>Jugador</code> objects with all players.
 	  */
 	@GetMapping
-	public List<Jugador> obtenerTodos(){
-		return jugadorService.obtenerTodos();
+	public ResponseEntity<List<Jugador>> obtenerTodos(){
+		try {
+			return ResponseEntity.ok(jugadorService.obtenerTodos());
+		}
+		catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	/**
@@ -152,8 +157,12 @@ public class JugadorController {
 	 */
 	@PostMapping
 	public ResponseEntity<Jugador> crear(@RequestBody Jugador jugador){
-		Jugador nuevoJugador = jugadorService.crearJugador(jugador);
-		return ResponseEntity.ok(nuevoJugador);
+		try {
+			return ResponseEntity.ok(jugadorService.crearJugador(jugador));
+		}
+		catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	/**
