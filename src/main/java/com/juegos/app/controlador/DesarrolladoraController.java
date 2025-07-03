@@ -38,17 +38,19 @@ public class DesarrolladoraController {
 	}
 	
 	@GetMapping
-	public List<Desarrolladora> getAllGameDevelopmentCompanies(){
-		
-		return desarrolladoraService.getAllGameDevelopmentCompanies();
+	public ResponseEntity<List<Desarrolladora>> getAllGameDevelopmentCompanies(){
+		try {
+			return ResponseEntity.ok(desarrolladoraService.getAllGameDevelopmentCompanies());
+		}
+		catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@GetMapping("/id/{id}")
 	public ResponseEntity<Desarrolladora> getDevelopmentCompanyById(@PathVariable Long id){
 		try {
-			Desarrolladora desarrolladora = desarrolladoraService.getDevelopmentCompanyById(id);
-			
-			return ResponseEntity.ok(desarrolladora);
+			return ResponseEntity.ok(desarrolladoraService.getDevelopmentCompanyById(id));
 		}
 		catch (RuntimeException e) {
 			return ResponseEntity.notFound().build();
@@ -56,39 +58,39 @@ public class DesarrolladoraController {
 	}
 	
 	@GetMapping("/nombre/{nombre}")
-	public ResponseEntity<Desarrolladora> getDevelopmentCompanyByName(@PathVariable String nombre){
-		
-		Optional<Desarrolladora> desarrolladora = desarrolladoraService.getDevelopmentCompanyByName(nombre);
-		
-		return desarrolladora
-				.map(ResponseEntity::ok)
-				.orElseGet(()-> ResponseEntity.notFound().build());
+	public ResponseEntity<Optional<Desarrolladora>> getDevelopmentCompanyByName(@PathVariable String nombre){
+		try {
+			return ResponseEntity.ok(desarrolladoraService.getDevelopmentCompanyByName(nombre));
+		}
+		catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@GetMapping("/pais/{pais}")
-	public List<Desarrolladora> getDevelopmentCompaniesByCountry(@PathVariable String pais){
-		
-		return desarrolladoraService.getDevelopmentCompaniesByCountry(pais);
+	public ResponseEntity<List<Desarrolladora>> getDevelopmentCompaniesByCountry(@PathVariable String pais){
+		try {
+			return ResponseEntity.ok(desarrolladoraService.getDevelopmentCompaniesByCountry(pais));
+		}
+		catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@PostMapping
 	public ResponseEntity<Desarrolladora> insertNewDevelopmentCompany(@RequestBody Desarrolladora desarrolladora){
-		
-		Desarrolladora newDevelopmentCompany = desarrolladoraService.insertNewDevelopmentCompany(desarrolladora);
-		
-		return ResponseEntity.ok(newDevelopmentCompany);
+		try {
+			return ResponseEntity.ok(desarrolladoraService.insertNewDevelopmentCompany(desarrolladora));
+		}
+		catch (RuntimeException e) {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
-	@PutMapping("/{id}")
-	public ResponseEntity<Desarrolladora> updateDevelopmentCompany(@PathVariable Long id, @RequestBody Desarrolladora d){
+	@PutMapping
+	public ResponseEntity<Desarrolladora> updateDevelopmentCompany(@RequestBody Desarrolladora d){
 		try {
-			Desarrolladora auxDevelopmentCompany = desarrolladoraService.getDevelopmentCompanyById(id);
-			auxDevelopmentCompany.setNombre(d.getNombre());
-			auxDevelopmentCompany.setPais(d.getPais());
-			
-			Desarrolladora newDevelopmentCompany = desarrolladoraService.insertNewDevelopmentCompany(auxDevelopmentCompany);
-			
-			return ResponseEntity.ok(newDevelopmentCompany);
+			return ResponseEntity.ok(desarrolladoraService.insertNewDevelopmentCompany(d));
 		}
 		catch (RuntimeException e) {
 			return ResponseEntity.notFound().build();
