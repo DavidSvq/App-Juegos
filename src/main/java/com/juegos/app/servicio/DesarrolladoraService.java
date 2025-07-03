@@ -6,7 +6,6 @@ package com.juegos.app.servicio;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.juegos.app.modelo.Desarrolladora;
@@ -23,7 +22,6 @@ public class DesarrolladoraService {
 	/**
 	 * @param repoDesarrolladora
 	 */
-	@Autowired
 	public DesarrolladoraService(RepositorioDesarrolladora repoDesarrolladora) {
 		this.repoDesarrolladora = repoDesarrolladora;
 	}
