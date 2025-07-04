@@ -3,6 +3,8 @@
  */
 package com.juegos.app.modelo;
 
+import java.util.Objects;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -78,6 +80,28 @@ public class DesarrolladoraJuego {
 	 */
 	public Long getId() {
 		return id;
+	}
+
+	@Override
+	public String toString() {
+		return "DesarrolladoraJuego [id=" + id + ", juego=" + juego + ", desarrolladora=" + desarrolladora + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(desarrolladora, juego);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DesarrolladoraJuego other = (DesarrolladoraJuego) obj;
+		return Objects.equals(desarrolladora, other.desarrolladora) && Objects.equals(juego, other.juego);
 	}
 	
 	
