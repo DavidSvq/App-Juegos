@@ -3,7 +3,6 @@
  */
 package com.juegos.app.modelo;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
