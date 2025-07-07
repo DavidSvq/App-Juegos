@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.juegos.app.modelo.Juego;
 import com.juegos.app.servicio.JuegoService;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 /**

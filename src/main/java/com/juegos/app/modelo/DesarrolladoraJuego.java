@@ -17,7 +17,7 @@ import jakarta.persistence.Table;
  * 
  */
 @Entity
-@Table(name="desarroladores_juegos")
+@Table(name="desarrolladores_juegos")
 public class DesarrolladoraJuego {
 	
 	@Id
