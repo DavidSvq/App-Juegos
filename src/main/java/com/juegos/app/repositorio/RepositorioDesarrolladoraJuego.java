@@ -15,7 +15,6 @@ import com.juegos.app.modelo.Juego;
 /**
  * 
  */
-@Repository
 public interface RepositorioDesarrolladoraJuego extends JpaRepository<DesarrolladoraJuego, Long> {
 	
 	Optional<DesarrolladoraJuego> findByJuego(Juego juego);
