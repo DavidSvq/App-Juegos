@@ -42,14 +42,16 @@ Además, incorporé Docker y Docker Compose para facilitar el despliegue y la ej
  
 ## 🧪 Requisitos previos
 
-- Java 17 o superior instalado  
-- Maven instalado  
-- Docker (incluyendo Docker Compose) instalado y funcionando  
-
+- Docker instalado (incluye Docker Compose en versiones modernas)
+(opcional) Java y Maven si decides ejecutar el proyecto fuera de Docker
 
 ---
 
 ## ⚙️ Cómo ejecutar el proyecto
+
+🔒 **Recomendación:** Clona el repositorio en una carpeta local que no esté sincronizada con servicios en la nube (como Google Drive, OneDrive o Dropbox), para evitar problemas de permisos y conflictos con archivos.
+Por ejemplo:  
+`C:\Usuarios\TuUsuario\Proyectos\`
 
 ### Preparar archivo `.env`
 
@@ -72,7 +74,7 @@ Para ejecutar el proyecto correctamente, sigue estos pasos:
    cd App-Juegos
 2. Construir la imagen Docker y levantar los contenedores con Docker Compose  
    ```bash
-   docker-compose up --build
+   docker compose up --build
 3. La API estará disponible en `http://localhost:8080`
 4. Puedes probar la API fácilmente desde tu navegador accediendo, por ejemplo, a:  
    `http://localhost:8080/jugadores`
